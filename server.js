@@ -10,7 +10,7 @@ const headers = {
 };
 
 // Middleware
-app.use(express.static(path.join(__dirname, '..', 'client/dist')));
+app.use(express.static(path.join(__dirname, 'client/dist')));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -75,19 +75,19 @@ app.get('/qa/questions', (req, res) => {
 // ---------- API PUT REQUESTS ---------- //
 /* ----- Questions & Answers ----- */
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
-  axiosPut(req.url, req.body);
+  axiosPut(req.url, req.body, res);
 });
 
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
-  axiosPut(req.url, req.body);
+  axiosPut(req.url, req.body, res);
 });
 
 app.put('/qa/questions/:question_id/report', (req, res) => {
-  axiosPut(req.url, req.body);
+  axiosPut(req.url, req.body, res);
 });
 
 app.put('/qa/answers/:answer_id/report', (req, res) => {
-  axiosPut(req.url, req.body);
+  axiosPut(req.url, req.body, res);
 });
 /* ----- Ratings ----- */
 app.put('/reviews/:review_id/report', (req, res) => {
