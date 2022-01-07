@@ -58,10 +58,24 @@ class QuestionsList extends React.Component {
     });
   }
 
-  onAorQAddition() {
+  async onAorQAddition() {
+    try {
+      const listOfQs = await axios.get('http://127.0.0.1:3000/qa/questions', {params: { product_id: this.props.product_id, count: 50 }});
+
+      this.setState({
+        questions: listOfQs.data.results,
+        questionCounter: 4
+      });
+
+      console.log('Number of Qs: ', this.state.questions.length);
+      console.log('Number of Qs s/b: ', listOfQs.data.results.length);
+    } catch (err) {
+      console.error('Error receiving response (QuestionsList.jsx): ', err);
+    }
     console.log('Message received. Spin the wheel again from QL.jsx L62');
-    this.getAllQuestions();
+    // this.getAllQuestions();
   }
+
 
   render() {
     let renderedQuestions;
